@@ -1,18 +1,50 @@
 import React, { Component } from 'react'
+import './Style.css';
+import { Container, Row, Col } from 'react-bootstrap'
 
- class HornedBeasts extends Component {
+class HornedBeasts extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            clicks: 0
+        }
+
+    }
+    favClicks = () => {
+        this.setState({
+            clicks: this.state.clicks + 1
+        }
+
+        )
+    }
     render() {
         return (
-            <div>
-                {/* <h1>hi</h1> */}
 
-               <h2> title:{this.props.title} </h2>
-             
-               {/* <img src="" alt ="" title="" id="img1"> imageUrl: {this.props.imageUrl} </img> */}
-              
-               <img src={`${this.props.imageUrl}`} alt ="" title=""></img>
-               <p> description:{this.props.description} </p>
-            </div>
+
+            <>
+                <Container>
+                    <Row>
+                        <Col xs={12} md={8}>
+                            <section>
+                                <h2> Title:{this.props.title} </h2>
+
+
+                                <img onClick={this.favClicks} src={`${this.props.imageUrl}`} alt={this.props.horns} title={this.props.keyword} className='photo'></img>
+                                <div id="ClicksDiv">
+                                    <img src="https://stemflorida.net/wp-content/uploads/2019/08/Buy-TikTok-Hearts.jpg" alt="Fav" className='favIcon'></img>
+                                    <h4>{this.state.clicks}</h4>
+
+                                </div>
+                                <p> Description:{this.props.description} </p>
+
+                            </section>
+                        </Col>
+                     
+                    </Row>
+                </Container>
+
+
+            </>
         )
     }
 }
